@@ -1,0 +1,11 @@
+Django==4.2.5           # or whichever version you're using
+gTTS==2.2.3             # Google Text-to-Speech
+pyttsx3==2.90
+SpeechRecognition==3.8.1
+fuzzywuzzy==0.18.0      # For fuzzy string matching
+python-Levenshtein==0.12.2  # fuzzywuzzy requires this for performance boost
+wikipedia-api==0.5.8    # For Wikipedia queries
+pyjokes==0.6.0          # For jokes
+requests==2.31.0        # For HTTP requests (used for APIs like weather)
+PyAudio==0.2.13         # Used by SpeechRecognition, may require manual installation
+gTTS==2.2.3             # Google Text-to-Speech API
