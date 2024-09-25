@@ -1,0 +1,345 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore - AI Laika</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 10;
+            text-align: center;
+            margin: 35%;
+            margin-top: 0rem;
+            height: 700px;
+            width:400px;
+            border: 2px solid blue;
+        }
+
+
+        .explore-container {
+            padding: 10px;
+        }
+
+        h1{
+            color: #3300ff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .explore-item {
+            background-color: #fff;  
+            margin: 20px auto;
+            padding: 20px; /* Reduced padding */
+            border-radius: 30px ;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            height: 100px; /* Fixed height */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .explore-item h5 {
+            color: #333;
+            margin-bottom: 30px; /* Reduced bottom margin */
+            font-size: 25px; /* Adjusted font size */
+        }
+
+        .explore-item p {
+            color: #666;
+            margin-top: -20px; /* Reduced top margin */
+            font-size: 12px; /* Adjusted font size */
+            line-height: 1.5; /* Controlled line height */
+        }
+
+        .explore-item.email-assist {
+            background-color: #b3ff5c;
+            height: 30px;
+            width: 250px;
+            text-align: center;
+        }
+
+        .explore-item.object-detection {
+            background-color: #fabeff;
+            height: 30px;
+            width: 250px;
+        }
+
+        .explore-item.weather-forecasting {
+            background-color: #8afff5;
+            height: 30px;
+            width: 250px;
+        }
+        .explore-item.navigation-laika {
+            background-color: #aea5ffcf;
+            height: 30px;
+            width: 250px;
+        }
+
+        .explore-item.laika-assist{
+            background-color: #56ffbbcf;
+            height: 30px;
+            width: 250px;
+        }
+
+
+
+        .top-design,
+        .bottom-design {
+            position: absolute;
+            width: 90px; /* Adjust the size */
+            height: auto;
+        }
+
+        .top-design {
+            top:0.0%;
+            left: 11.55%;
+            margin-right: 20x;
+            transform: translateX(-50%);
+        }
+
+        /* .bottom-design {
+            bottom:-1.7%;
+            left: 10.10%;
+            transform: translateX(-10%);
+        } */
+         .bottom-design {
+            bottom:3.4%;
+            left: 38%;
+            transform: translateX(-50%);
+        }
+        h1 i {
+    font-size: 1.2em;
+    margin-right: 1px;
+}
+.colored-box {
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically */
+    text-align: center;       /* Center the text */
+    height: 100px;            /* Adjust as needed */
+    margin-bottom: 10px;      /* Add some space between the sections */
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+.fas{
+    color: #3300ff;
+}
+.fa{
+    color: #3300ff;
+}
+    </style>
+</head>
+<body>
+    
+    <div class="top-design"></div>
+    <img src="{% static 'images/lo.png' %}" height="75px" width="400px" alt="Top Design">
+</div>
+    <div class="explore-container">
+        <!-- Top design image -->
+        <!-- <div class="top-design">
+            <img src="{% static 'images/lo.png' %}" height="75px" width="400px" alt="Top Design">
+        </div> -->
+       
+        <h1><i class="fas fa-search"></i> EXPLORE</h1>
+
+        <div class="explore-item email-assist colored-box" >
+            <h3> <i class="fas fa-envelope" ></i>  Email Assistant</h3>
+            <!-- <p> I'm here to assist you every step of the way.</p> -->
+        </div>
+        <div class="explore-item object-detection colored-box">
+            <h3><i class="fa fa-object-group"></i>  Object Detection</h3>
+            <!-- <p>I assist with object detection</p> -->
+        </div>
+        <div class="explore-item weather-forecasting colored-box">
+            <h3><i class="fa fa-cloud"></i>  Weather Forecast</h3>
+            <!-- <p> Just ask 'Weather' to stay informed and get started!</p> -->
+        </div>
+        <div class="explore-item navigation-laika colored-box">  
+            <h3><i class="fa fa-compass"></i>  Navigation </h3>
+            <!-- <p>I provide real-time weather updates</p> -->
+        </div>
+        <div class="explore-item laika-assist colored-box">  
+            <h3><i class="fa fa-comments"></i> Chat with laika</h3>
+            <!-- <p>Let me help! Ask me 'Who is [person's name]</p> -->
+        </div>
+        <!-- <div class="bottom-design"></div>
+            <img src="{% static 'images/dw.png' %}" height="75px" width="400px" alt="Bottom Design">
+        </div> -->
+        <div class="bottom-design">
+            <img src="{% static 'images/dw.png' %}" height="75px" width="405px" alt="Bottom Design">
+        </div>
+    </div>
+
+
+    
+
+     <script>
+        
+        window.onload = function() {
+            // Prepare the speech synthesis utterance
+            var exploreUtterance = new SpeechSynthesisUtterance("Which one you want... 1 Email assistant....2 Object detection...3 weather forecast .... 4 Navigation.......5 Chat with Laika, or ask about the current time, any person or place you want to know about, or request to play your favorite YouTube videos");
+        
+            // Function to set the female voice
+            function setFemaleVoice() {
+                var voices = window.speechSynthesis.getVoices();
+                var femaleVoice = voices.find(voice =>
+                    voice.name.toLowerCase().includes("zira")
+                );
+                
+                if (femaleVoice) {
+                    exploreUtterance.voice = femaleVoice;
+                } else {
+                    console.log("Female voice not found, using default voice.");
+                }
+                
+                // Speak the initial prompt
+                window.speechSynthesis.speak(exploreUtterance);
+        
+                // Start voice recognition after the initial prompt is spoken
+                exploreUtterance.onend = function() {
+                    startListening();
+                };
+            }
+        
+            // Set the voice when the voices are loaded
+            if (window.speechSynthesis.getVoices().length === 0) {
+                window.speechSynthesis.onvoiceschanged = setFemaleVoice;
+            } else {
+                setFemaleVoice();
+            }
+        };
+        function getCSRFToken() {
+    var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    return csrfToken;
+}
+        // Function to handle recognized commands
+        function handleCommand(command) {
+            command = command.toLowerCase();
+            let navigate = false;
+        
+            
+               if (command.includes('object detection')) {
+                window.location.href = '/object/';
+                navigate = true;
+            } else if (command.includes('weather')) {
+                window.location.href = '/weather/';
+                navigate = true;
+            }else if (command.includes('navigation')) {
+                window.location.href = '/navigation/';
+                navigate = true;
+            } 
+            else if (command.includes('chat with laika')) {
+                window.location.href = '/chat/';
+                navigate = true;
+            }else if (command.includes('email') || command.includes('email assistant') || command.includes('mail')) {
+                window.location.href = '/email/';
+                navigate = true;
+            } else if (command.includes('tell me a joke')) {
+                fetch('/tell_joke/')
+                    .then(response => response.json())
+                    .then(data => {
+                        speak(data.joke);
+                    })
+                    .catch(error => console.error('Error:', error));
+            } 
+            else if (command.includes('where is')) {
+        const placeName = command.replace('where is', '').trim();
+        if (placeName) {
+            fetch('/place_info/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ command: `where is ${placeName}` })
+            })
+            .then(response => response.json())
+            .then(data => {
+                speak(data.info); // Speak the place information
+                if (data.url) {
+                    window.open(data.url, '_blank'); // Open the location in a new tab
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        navigate = true;
+            }
+            else if (command.includes('go back')) {
+                    window.location.href = '/explore/';
+            }
+            
+           
+        
+           
+        }
+        
+        // Function to initiate voice recognition
+        function startListening() {
+            var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.interimResults = false;
+        
+            recognition.onresult = function(event) {
+                var command = event.results[0][0].transcript.toLowerCase();
+                handleCommand(command);
+            };
+        
+            recognition.onerror = function(event) {
+                console.error('Speech recognition error:', event.error);
+            };
+        
+            recognition.onend = function() {
+                startListening(); // Restart listening immediately
+            };
+        
+            recognition.start();
+        }
+        
+        // Function to speak a message (if needed)
+        function speak(message) {
+    // Cancel any ongoing speech
+    window.speechSynthesis.cancel();
+
+    // Create a new utterance
+    var utterance = new SpeechSynthesisUtterance(message);
+    var voices = window.speechSynthesis.getVoices();
+    var femaleVoice = voices.find(voice =>
+        voice.name.toLowerCase().includes("zira")
+    );
+
+    if (femaleVoice) {
+        utterance.voice = femaleVoice;
+    }
+
+    // Set rate, pitch, and volume for a more natural sound if needed
+    utterance.rate = 1.5; // Normal speed
+    utterance.pitch = 1.5; // Default pitch
+    utterance.volume = 1; // Full volume
+
+    // Queue the utterance and wait for it to finish before processing further
+    utterance.onend = function () {
+        console.log('Speech has finished.');
+    };
+
+    utterance.onerror = function (event) {
+        console.error('Speech synthesis error:', event.error);
+    };
+
+    // Speak the utterance
+    window.speechSynthesis.speak(utterance);
+}
+
+        
+        </script>
+        
+    </body>
+    </html>
+
+
+
