@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Laika - Welcome</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>body {
+        font-family: Arial, sans-serif;
+        margin: 35%;
+        margin-top: 0rem;
+        padding: 0;
+        background: white;
+        color: blue;
+        text-align: center;
+        border: 2px solid blue;
+        width: 400px;
+        height: 697px;
+        align-items: center;
+        justify-items: center;
+        
+    }
+    .laika {
+    max-width: 300px;
+    width: 200%;
+    height: auto;
+    margin-bottom: 20px;
+}    
+.top-design,
+        .bottom-design {
+            position: absolute;
+            width: 90px; /* Adjust the size */
+            height: auto;
+        }
+
+        .top-design {
+            top:0.0%;
+            left: 11.55%;
+            margin-right: 20x;
+            transform: translateX(-50%);
+        }
+.bottom-design {
+            bottom:3.4%;
+            left: 38.5%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <div class="top-design"></div>
+        <img src="{% static 'images/lo.png' %}" height="75px" width="400px" alt="Top Design">
+    </div>
+        <video class="laika" autoplay loop muted>
+            <source src="{% static 'video/laika.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        
+        <div class="welcome-text"><br><br>
+            <h1>Hello, It's AI Laika!</h1>
+            <p>Welcome to our AI assistant app!<br> We're excited to have you on board. <br>Here are a few steps to help you get started.</p><br><br>
+            <br><br><br></b>
+            <div class="bottom-design">
+                <img src="{% static 'images/dw.png' %}" height="75px" width="405px" alt="Bottom Design">
+            </div>
+        <br><br><br><br>
+        
+        <!-- Hidden Audio Player for Autoplay -->
+        <audio id="greeting-audio" autoplay style="display: none;">
+            <source src="{{ audio_url }}" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        <!-- The script to handle voice recognition and redirection -->
+        <script>
+            window.onload = function() {
+                var utterance = new SpeechSynthesisUtterance("Hey User, I am Laika. I am here to assist you. Do you want to explore? Say 'next'.");
+    
+                function setFemaleVoice() {
+                    var voices = window.speechSynthesis.getVoices();
+                    // Try to find a voice that sounds female, based on common female voice names
+                    var femaleVoice = voices.find(voice => 
+                        voice.name.toLowerCase().includes("zira") 
+                    );
+                    
+                    if (femaleVoice) {
+                        utterance.voice = femaleVoice;
+                    } else {
+                        console.log("Female voice not found, using default voice.");
+                    }
+                    
+                    window.speechSynthesis.speak(utterance);
+                }
+    
+                if (window.speechSynthesis.getVoices().length === 0) {
+                    window.speechSynthesis.onvoiceschanged = setFemaleVoice;
+                } else {
+                    setFemaleVoice();
+                }
+    
+                utterance.onend = function() {
+                    var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+                    recognition.lang = 'en-US';
+                    recognition.interimResults = false;
+                    recognition.maxAlternatives = 1;
+    
+                    recognition.onresult = function(event) {
+                        var command = event.results[0][0].transcript.toLowerCase();
+                        if (command.includes('next')) {
+                            window.location.href = "{% url 'explore' %}";
+                        }
+                    };
+    
+                    recognition.onerror = function(event) {
+                        console.error('Speech recognition error:', event.error);
+                    };
+    
+                    recognition.start();
+                };
+            };
+        
+        </script>
+    </div>
+</body>
+</html>

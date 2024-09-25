@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 10;
+            text-align: center;
+            height: 700px;
+            width: 400px;
+            border: 2px solid blue;
+            margin-left:500px;
+            margin-top:0px;
+        }
+
+        .email-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 27px;
+            max-height: 400px;
+            max-width: 344px;
+            width: 100%;
+            text-align: center;
+            margin-top: 50px;
+            height: 200px;
+            
+        }
+
+        h1 {
+            color: #1500ff;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .email-video {
+            max-width: 400%;
+            width: 350px; /* Video size */
+            height: 250px;
+            position: center; /* Absolute positioning */
+            top: 70px; /* Adjust as needed */
+            left: 560px; /* Adjust as needed */
+        }
+
+        .loading-message {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #007bff;
+        }
+
+        .error-message {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #dc3545;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .action-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .action-button:hover {
+            background-color: #0056b3;
+        }
+        .bottom-design{
+            margin-top:250px;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="top-design"></div>
+    <img src="{% static 'images/lo.png' %}" height="75px" width="400px" alt="Top Design">
+
+    <div class="email-container">
+        <video class="email-video" autoplay loop muted>
+            <source src="{% static 'video/mail.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <h1>Email Assistant</h1>
+        <p id="loading" class="loading-message">Please wait...</p>
+        <div id="email-info" class="email-info">
+            <p id="email-description">Use voice commands to manage your emails!</p>
+        </div>
+        <p id="error-message" class="error-message" style="display: none;"></p>
+        
+        <div class="button-container">
+            <button class="action-button">Compose Email</button>
+            <button class="action-button">Check Inbox</button>
+            <button class="action-button">Delete Recent Email</button>
+        </div>
+    </div>
+    
+    <div class="bottom-design"></div>
+    <img src="{% static 'images/dw.png' %}" height="75px" width="405px" alt="Bottom Design">
+
+    <script>
+        function triggerVoiceCommand(command) {
+            fetch(`/${command}-email`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": '{{ csrf_token }}'
+                }
+            }).then(response => {
+                if (!response.ok) {
+                    console.error("There was an issue starting the operation.");
+                }
+            }).catch(error => {
+                console.error("Error: " + error.message);
+            });
+        }
+
+        function listenForCommands() {
+            // Call your speech recognition function here
+            // For example: 
+            // recognize_speech_from_mic();
+            console.log("Microphone activated. Listening for your command...");
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Automatically trigger a command, e.g., 'compose'
+            triggerVoiceCommand('compose'); // Change this to 'read' or 'delete' as needed
+            listenForCommands();
+        });
+    </script>
+</body>
+</html>
+
